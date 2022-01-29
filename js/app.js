@@ -201,7 +201,7 @@ function init() {
 		hintContent: "Васильковская, 30"
 	}, {
 		iconLayout: 'default#image',
-		iconImageHref: 'img/icons/pin.svg',
+		iconImageHref: 'img/icons/pin.png',
 		iconImageSize: [40, 40],
 		iconImageOffset: [-50, -75]
 	});
