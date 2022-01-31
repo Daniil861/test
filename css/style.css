@@ -351,6 +351,7 @@ iframe {
 
 .map {
   height: 604px;
+  background: url("../img/icons/loading.gif") center/30px 30px no-repeat;
 }
 
 .map__box-map {
