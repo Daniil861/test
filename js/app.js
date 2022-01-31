@@ -192,7 +192,30 @@ if ('map') {
 		const targetElement = e.target;
 		if (targetElement.closest('.top-header__popup-map')) {
 
-			ymaps.ready(init);
+			function loadScript(url, callback) {
+				var script = document.createElement("script");
+
+				if (script.readyState) {
+					script.onreadystatechange = function () {
+						if (script.readyState == "loaded" ||
+							script.readyState == "complete") {
+							script.onreadystatechange = null;
+							callback();
+						}
+					};
+				} else {
+					script.onload = function () {
+						callback();
+					};
+				}
+
+				script.src = url;
+				document.getElementsByTagName("head")[0].appendChild(script);
+			}
+
+			loadScript("https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;loadByRequire=1", function () {
+				ymaps.load(init);
+			});
 
 			function init() {
 				var map = new ymaps.Map("map", {
@@ -223,6 +246,10 @@ if ('map') {
 				map.geoObjects.add(placemark1);
 
 			}
+
+
+
+
 		}
 	})
 }
