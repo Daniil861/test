@@ -188,37 +188,43 @@ document.addEventListener('keydown', function (e) {
 
 // Карта
 if ('map') {
-	ymaps.ready(init);
+	document.addEventListener('click', (e) => {
+		const targetElement = e.target;
+		if (targetElement.closest('.top-header__popup-map')) {
 
-	function init() {
-		var map = new ymaps.Map("map", {
-			center: [50.39381957305294, 30.489799999999985],
-			zoom: 16
-		});
+			ymaps.ready(init);
 
-		let placemark1 = new ymaps.Placemark([50.39381957305294, 30.489799999999985], {
-			balloonContentHeader: 'Киев',
-			balloonContentBody: "ул.Васильковская, 30",
-			hintContent: "Васильковская, 30"
-		}, {
-			iconLayout: 'default#image',
-			iconImageHref: 'img/icons/pin.png',
-			iconImageSize: [40, 40],
-			iconImageOffset: [-50, -75]
-		});
+			function init() {
+				var map = new ymaps.Map("map", {
+					center: [50.39381957305294, 30.489799999999985],
+					zoom: 16
+				});
 
-		map.controls.remove('geolocationControl'); // удаляем геолокацию
-		map.controls.remove('searchControl'); // удаляем поиск
-		map.controls.remove('trafficControl'); // удаляем контроль трафика
-		map.controls.remove('typeSelector'); // удаляем тип
-		map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
-		// map.controls.remove('zoomControl'); // удаляем контрол зуммирования
-		map.controls.remove('rulerControl'); // удаляем контрол правил
-		map.behaviors.disable(['scrollZoom']); // отключаем скролл карты (опционально)
+				let placemark1 = new ymaps.Placemark([50.39381957305294, 30.489799999999985], {
+					balloonContentHeader: 'Киев',
+					balloonContentBody: "ул.Васильковская, 30",
+					hintContent: "Васильковская, 30"
+				}, {
+					iconLayout: 'default#image',
+					iconImageHref: 'img/icons/pin.png',
+					iconImageSize: [40, 40],
+					iconImageOffset: [-50, -75]
+				});
 
-		map.geoObjects.add(placemark1);
+				map.controls.remove('geolocationControl'); // удаляем геолокацию
+				map.controls.remove('searchControl'); // удаляем поиск
+				map.controls.remove('trafficControl'); // удаляем контроль трафика
+				map.controls.remove('typeSelector'); // удаляем тип
+				map.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
+				// map.controls.remove('zoomControl'); // удаляем контрол зуммирования
+				map.controls.remove('rulerControl'); // удаляем контрол правил
+				map.behaviors.disable(['scrollZoom']); // отключаем скролл карты (опционально)
 
-	}
+				map.geoObjects.add(placemark1);
+
+			}
+		}
+	})
 }
 
 
